@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+<section id="content_area">
+    <div class="clearfix wrapper main_content_area">
+    
+        <div class="clearfix main_content floatleft">
+        
+            
+            <div class="clearfix content">
+                
+                <div class="contact_us">
+                
+                    <h1>Contact us</h1>
+                    
+                    <p>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a 
+                    ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class 
+                    aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos Sed non  mauris vitae erat consequat auctor eu in elit. Class 
+                    aptent taciti sociosqu</p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <p><input type="text" class="wpcf7-text" placeholder="Full Name*" name='fullname'/></p>
+                        <p><input type="text" class="wpcf7-email" placeholder="Email*" name='email' /></p>
+                        <p><input type="text" class="wpcf7-text" placeholder="Subject*" name='subject' /></p>
+                        <p><textarea class="wpcf7-textarea" placeholder="Message*" name='message'></textarea></p>
+                        <p><input type="Submit" class="wpcf7-submit" value="Submit"/></p>
+                    </form>
+                    
+                </div>
+                
+            </div>
+            
+            
+        </div>
+
+    </div>
+</section>
+{% endblock content %}

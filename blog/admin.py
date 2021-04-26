@@ -10,4 +10,5 @@ class GroupAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'created', 'status', 'group')
+    list_display = ('title', 'author', 'created', 'status', 'group', 'visit', 'show_slider')
+    list_editable = ('status', 'show_slider')

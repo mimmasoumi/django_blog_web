@@ -1,0 +1,76 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}
+  Django blog | Search for {{query}}
+{% endblock title %}
+
+
+{% block content %}
+<div class="clearfix content">
+    <div class="content_title">
+        
+        {% if articles %}
+            <h2> {{articles.count}} post found for " {{query}} " </h2>
+        {% else %}
+            <h2>Nothing found for " {{query}} "</h2>
+        {% endif %}
+            
+    </div>
+
+    {% for article in articles  %}
+    <div class="clearfix single_content">
+        <div class="clearfix post_date floatleft">
+            <div class="date">
+                <h3>{{article.created|date:"d"}}</h3>
+                <p>{{article.created|date:"F"}}</p>
+            </div>
+        </div>
+        <div class="clearfix post_detail">
+            <h2><a href="/article{{article.id}}/{{article.title}}">{{article.title}}</a></h2>
+            <div class="clearfix post-meta">
+                <p><span><i class="fa fa-user"></i> {{article.author}} </span> <span><i class="fa fa-clock-o"></i> {{article.created|date}}</span>
+                     <span><i class="fa fa-folder"></i>
+                        {{article.group}}</span></p>
+            </div>
+            <div class="clearfix post_excerpt">
+                <img src="media/{{article.images}}" alt="" />
+                <p> {{article.content}} </p>
+            </div>
+            <a href="/article{{article.id}}/{{article.title}}">Continue Reading</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <nav>
+        <ul>
+
+            {% if articles.has_previous %}
+            <li>
+                <a href="?page={{page.previous_page_number}}&q={{query}}">
+                    << </a>
+            </li>
+            {% endif %}
+
+            {% for num in articles.paginator.page_range %}
+
+                {% if articles.number == num %}
+                     <li>{{num}}</li>
+                {% elif num > articles.number|add:'-3' and num < articles.number|add:'3' %} <li><a href="?page={{num}}&q={{query}}"> {{num}}
+                </a></li>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if articles.has_next %}
+                <li>
+                    <a href="/?page={{page.next_page_number}}&q={{query}}"> >> </a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+</div>
+{% endblock content %}

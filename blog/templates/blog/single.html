@@ -1,0 +1,105 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}
+  Django blog | {{article.title|title}}
+{% endblock title %}
+
+{% block content %}
+<section id="content_area">
+	<div class="clearfix wrapper main_content_area">
+
+		<div class="clearfix main_content floatleft">
+
+
+			<div class="clearfix content">
+
+				<h1> {{article.title}} </h1>
+				<div class="clearfix post-meta">
+					<p><span><i class="fa fa-user"></i> {{article.author}} </span> <span><i class="fa fa-clock-o"></i> {{article.created|date}} </span> <span><i class="fa fa-folder"></i> {{article.group}} </span></p>
+				</div>
+
+				<p>{{article.content}}</p>
+				<br>
+
+				
+
+				<div class="advertisement_container">
+					<div class="advertisement">
+
+					</div>
+				</div>
+
+
+			</div>
+
+				<div class="more_themes">
+					<h2>Related Post <i class="fa fa-thumbs-o-up"></i></h2>
+					<div class="more_themes_container">
+
+						
+						{% if related_post %}
+							{% for article in related_post %}
+							<div class="single_more_themes floatleft">
+								<img src="/media/{{article.images}}" alt=""/>
+								<a href="/article{{article.id}}/{{article.title}}"><h2> {{article.title}} </h2></a>
+							</div>
+							{% endfor %}
+							
+						{% endif %}
+							
+						
+					</div>
+				</div>
+
+		</div>
+		<div class="clearfix sidebar_container floatright">
+
+			<div class="clearfix newsletter">
+				<form>
+					<h2>Signup for newsletter</h2>
+					<input type="text" placeholder="Name" id="mce-TEXT"/>
+					<input type="email" placeholder="Name" id="mce-EMAIL"/>
+					<input type="submit" value="Submit" id="mc-embedded-subscribe"/>
+				</form>
+			</div>
+			<div class="clearfix sidebar">
+				<div class="clearfix single_sidebar">
+					<div class="popular_post">
+						<div class="sidebar_title"><h2>Most Popular</h2></div>
+						<ul>
+							<li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+							<li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+							<li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+							<li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+							<li><a href="">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. </a></li>
+						</ul>
+					</div>
+					</div>
+				<div class="clearfix single_sidebar category_items">
+					<h2>Categories</h2>
+					<ul>
+						<li class="cat-item"><a href="">Category Name</a>(12)</li>
+						<li class="cat-item"><a href="">Category Name </a>(12)</li>
+						<li class="cat-item"><a href="">Category Name</a>(12)</li>
+						<li class="cat-item"><a href="">Category Name </a>(12)</li>
+						<li class="cat-item"><a href="">Category Name </a>(12)</li>
+					</ul>
+				</div>
+				<div class="clearfix single_sidebar">
+					<h2>Recent Post</h2>
+					<ul>
+						<li><a href="">Category Name <span>(12)</span></a></li>
+						<li><a href="">Category Name <span>(12)</span></a></li>
+						<li><a href="">Category Name <span>(12)</span></a></li>
+						<li><a href="">Category Name <span>(12)</span></a></li>
+						<li><a href="">Category Name <span>(12)</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% endblock content %}

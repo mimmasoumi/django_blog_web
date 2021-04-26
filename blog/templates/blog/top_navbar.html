@@ -1,0 +1,17 @@
+<div class="header_bottom">
+    <nav>
+        <ul id="nav">
+            <li><a href="/">Home</a></li>
+            <li id="dropdown"><a href="">Categories</a>
+                <ul>
+                    {% for group in groups %}
+                        <li><a href="/group{{group.id}}/{{group.title}}">{{group.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href="/aboutus">About Us</a></li>
+            <li><a href="/contactus">Contact Us</a></li>
+
+        </ul>
+    </nav>
+</div>
