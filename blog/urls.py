@@ -1,12 +1,12 @@
 from django.urls import path
+from .views import AboutUs, ContactUs, Index, Search, ShowGroup, Single
 
-from blog import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('article<article_id>/<article_title>', views.single),
-    path('search', views.search),
-    path('contactus/', views.contactus),
-    path('group<group_id>/<group_title>', views.show_group),
-    path('aboutus/', views.about_us)
+    path('', Index.as_view(), name='index'),
+    path('article<int:article_id>/<str:article_title>', Single.as_view()),
+    path('search', Search.as_view()),
+    path('contactus/', ContactUs.as_view()),
+    path('group<group_id>/<str:group_title>', ShowGroup.as_view()),
+    path('aboutus/', AboutUs.as_view())
 ]
